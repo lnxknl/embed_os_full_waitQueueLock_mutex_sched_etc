@@ -1,0 +1,27 @@
+diff -aur qpid-cpp-1.39.0/CMakeLists.txt ../build/extbld/third_party/qpid/core/qpid-cpp-1.39.0/CMakeLists.txt
+--- qpid-cpp-1.39.0/CMakeLists.txt	2018-10-22 01:43:10.000000000 +0300
++++ ../build/extbld/third_party/qpid/core/qpid-cpp-1.39.0/CMakeLists.txt	2019-05-31 19:29:15.394885252 +0300
+@@ -147,7 +147,7 @@
+   # -Wunreachable-code -Wpadded -Winline
+   # -Wshadow - warns about boost headers.
+   set (WARNING_FLAGS
+-     "-pedantic -Wall -Wextra -Wno-shadow -Wpointer-arith -Wcast-qual -Wcast-align -Wno-long-long -Wvolatile-register-var -Winvalid-pch -Wno-system-headers -Woverloaded-virtual -Wno-deprecated-declarations")
++     "-Wall -Wextra -Wno-shadow -Wpointer-arith -Wcast-qual -Wcast-align -Wno-long-long -Wvolatile-register-var -Winvalid-pch -Wno-system-headers -Woverloaded-virtual -Wno-deprecated-declarations")
+ 
+   if (CMAKE_CXX_COMPILER_VERSION VERSION_GREATER 7)
+     set(WARNING_FLAGS "${WARNING_FLAGS} -Wno-implicit-fallthrough")
+@@ -177,10 +177,10 @@
+   endif (GCC_VERSION VERSION_EQUAL 4.1.2)
+ 
+   if (NOT CMAKE_SYSTEM_NAME STREQUAL Windows)
+-    add_definitions(-pthread)
+-    set (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -pthread")
+-    set (CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} ${CATCH_UNDEFINED} -pthread")
+-    set (CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} ${CATCH_UNDEFINED} -pthread")
++    #add_definitions(-pthread)
++    #set (CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -pthread")
++    #set (CMAKE_SHARED_LINKER_FLAGS "${CMAKE_SHARED_LINKER_FLAGS} ${CATCH_UNDEFINED} -pthread")
++    #set (CMAKE_MODULE_LINKER_FLAGS "${CMAKE_MODULE_LINKER_FLAGS} ${CATCH_UNDEFINED} -pthread")
+   endif (NOT CMAKE_SYSTEM_NAME STREQUAL Windows)
+ endif (CMAKE_CXX_COMPILER_ID STREQUAL GNU)
+ 

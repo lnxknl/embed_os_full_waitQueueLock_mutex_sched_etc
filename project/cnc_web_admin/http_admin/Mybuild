@@ -1,0 +1,11 @@
+package cnc_web_admin.cgi_bin
+
+module http_admin {
+
+	@InitFS(target_dir="http_admin")
+	source "partials",
+	       "css",
+	       "index.html",
+	       "app.js"
+
+}

@@ -1,0 +1,24 @@
+package embox.arch.aarch64
+
+module arch extends embox.arch.arch {
+	source "arch.c"
+}
+
+@NoCode
+module interrupt extends embox.arch.interrupt {
+	source "ipl_impl.h"
+
+	@NoRuntime depends locore
+}
+
+@NoCode
+module locore extends embox.arch.locore {
+	@NoRuntime depends reg
+	@NoRuntime depends exceptions
+	@NoRuntime depends reset_handler
+}
+
+@NoCode
+module mem_barriers extends embox.arch.mem_barriers {
+	source "mem_barriers.h"
+}

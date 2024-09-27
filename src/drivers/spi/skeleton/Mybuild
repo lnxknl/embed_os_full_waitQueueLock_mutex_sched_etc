@@ -1,0 +1,17 @@
+package embox.driver.spi
+
+module skeleton_common {
+	option string log_level="LOG_ERR"
+
+	source "skeleton_spi_common.c"
+
+	depends embox.driver.spi.core
+}
+
+module skeleton_spi1 {
+	option string log_level="LOG_ERR"
+
+	source "skeleton_spi1.c"
+
+	depends embox.driver.spi.skeleton_common
+}

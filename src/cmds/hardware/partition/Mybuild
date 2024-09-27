@@ -1,0 +1,23 @@
+package embox.cmd.hw
+
+@AutoCmd
+@Cmd(name = "partition",
+	man = '''
+	NAME
+       just run on blk list and create sub-devices if it's required
+    SYNOPSIS
+       
+    DESCRIPTION
+       just run on blk list and create sub-devices if it's required
+	OPTIONS
+
+	SEE ALSO
+
+	AUTHORS
+			Anton Bondarev
+	''')
+module partition {
+	source "partition.c"
+
+	depends embox.driver.block.partition
+}

@@ -1,0 +1,32 @@
+package embox.driver
+
+module block_dev {
+	option string log_level="LOG_ERR"
+	source "block_dev_idesc.c"
+
+	@IncludeExport(path="drivers")
+	source "block_dev.h"
+
+	option number dev_quantity = 8
+	option number default_block_size = 512
+	source "block_dev.c"
+	source "block_dev_namer.c"
+
+	depends embox.mem.phymem
+	depends embox.fs.buffer_cache
+	depends embox.driver.buffer_crypt_api
+	depends embox.mem.phymem
+	depends embox.mem.heap_place
+	depends embox.device.common
+	@NoRuntime depends embox.compat.posix.libgen
+}
+
+@DefaultImpl(buffer_no_crypt)
+abstract module buffer_crypt_api {
+	@IncludeExport(path="fs")
+	source "buffer_head.h"
+}
+
+module buffer_no_crypt extends buffer_crypt_api {
+	source "buffer_no_crypt.c"
+}

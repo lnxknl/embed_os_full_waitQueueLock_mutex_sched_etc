@@ -1,0 +1,8 @@
+package embox.lib
+
+static module LibCrypt {
+	depends embox.lib.crypt.md5
+	depends embox.lib.crypt.crc32
+	depends embox.lib.crypt.crc16
+	depends embox.lib.crypt.b64
+}

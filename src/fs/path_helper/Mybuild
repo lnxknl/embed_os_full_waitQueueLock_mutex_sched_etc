@@ -1,0 +1,8 @@
+package embox.fs
+
+module path_helper {
+	source "hlpr_path.c"
+
+	@IncludeExport(path="fs")
+	source "hlpr_path.h"
+}

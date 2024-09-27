@@ -1,0 +1,19 @@
+package embox.driver.virtual
+
+module null {
+	source "null.c"
+
+	@NoRuntime depends embox.device.char_dev
+}
+
+module zero {
+	source "zero.c"
+
+	@NoRuntime depends embox.device.char_dev
+}
+
+module mem {
+	source "mem.c"
+
+	@NoRuntime depends embox.device.char_dev
+}

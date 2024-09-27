@@ -1,0 +1,7 @@
+package embox.driver
+
+module demo_char_dev {
+	source "demo_char_dev.c"
+
+	depends embox.device.char_dev
+}

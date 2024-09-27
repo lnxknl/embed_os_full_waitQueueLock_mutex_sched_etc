@@ -1,0 +1,56 @@
+package third_party.dropbear
+
+@Build(stage=2,script="$(EXTERNAL_MAKE)")
+@App
+@AutoCmd
+@Cmd(name = "dropbear",
+	help = "Lightweight SSH2 server.",
+	man = '''
+		NAME
+			dropbear - lightweight SSH server
+
+		SYNOPSIS
+			dropbear [flag arguments] [-b banner] [-r hostkeyfile] [-p [address:]port]
+
+		DESCRIPTION
+			dropbear is a small SSH server
+
+		OPTIONS
+			-F	Don't fork into background.
+
+			-s	Disable password logins.
+
+			-g	Disable password logins for root.
+
+			-v	Display debug output (need #define DEBUG_TRACE 1)
+
+		AUTHOR
+			Matt Johnston (matt@ucc.asn.au).
+			Gerrit Pape (pape@smarden.org) wrote this manual page.
+	''')
+module dropbear {
+	@AddPrefix("^BUILD/extbld/^MOD_PATH/install")
+	source "dropbear.o"
+
+	@InitFS
+	source "etc"
+
+	@InitFS
+	source ".ssh/authorized_keys"
+
+	@InitFS(chmod="622")
+	source "dev_pty_0"
+
+	@NoRuntime depends embox.compat.libc.assert
+	@NoRuntime depends embox.compat.libc.type
+	@NoRuntime depends embox.kernel.task.resource.errno
+	@NoRuntime depends embox.kernel.task.resource.dropbear_res
+	@NoRuntime depends embox.compat.posix.ipc.pipe
+	@NoRuntime depends embox.compat.posix.stubs
+	@NoRuntime depends embox.compat.posix.pty
+	@NoRuntime depends embox.compat.posix.proc.vfork
+	@NoRuntime depends embox.compat.posix.crypt
+	@NoRuntime depends embox.compat.posix.proc.rlimit
+	@NoRuntime depends embox.compat.posix.util.nanosleep
+	@NoRuntime depends embox.compat.posix.file_system
+}

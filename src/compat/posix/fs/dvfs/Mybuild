@@ -1,0 +1,28 @@
+package embox.compat.posix
+
+static module file_system_dvfs extends file_system {
+	option string log_level="LOG_ERR"
+	option number dir_quantity=4 /* DIR (dirent.h) */
+	
+	source "chmod_dvfs.c"
+	source "chown_dvfs.c"
+	source "dirent_dvfs.c"
+	source "flock_dvfs.c"
+	source "ftruncate_dvfs.c"
+	source "mkdir_dvfs.c"
+	source "mknod_dvfs.c"
+	source "open_dvfs.c"
+	source "remove_dvfs.c"
+	source "rmdir_dvfs.c"
+	source "unlink_dvfs.c"
+	source "xattr_dvfs.c"
+	source "rename_dvfs.c"
+	// source "statvfs_dvfs.c"
+
+	@NoRuntime depends file_system_common
+	@NoRuntime depends embox.fs.dvfs.core
+	@NoRuntime depends embox.compat.libc.str
+	@NoRuntime depends embox.security.api
+	@NoRuntime depends embox.mem.pool
+	@NoRuntime depends embox.compat.posix.libgen
+}

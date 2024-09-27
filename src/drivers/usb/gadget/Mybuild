@@ -1,0 +1,12 @@
+package embox.driver.usb.gadget
+
+module gadget {
+	option string log_level="LOG_ERR"
+
+	source "gadget.c"
+
+	@IncludeExport(path="drivers/usb/gadget")
+	source "gadget.h"
+
+	depends udc
+}

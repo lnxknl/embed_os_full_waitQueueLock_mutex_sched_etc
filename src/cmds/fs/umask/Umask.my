@@ -1,0 +1,12 @@
+
+package embox.cmd.fs
+
+@AutoCmd
+@Cmd(name="umask",
+	help="sets umask",
+	man="")
+module umask {
+	source "umask.c"
+
+	@NoRuntime depends embox.compat.posix.file_system
+}

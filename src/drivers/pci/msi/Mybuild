@@ -1,0 +1,13 @@
+package embox.driver
+
+module pci_msi {
+	option string log_level="LOG_NONE"
+
+	source "pci_msi.c"
+
+	@IncludeExport(path="drivers/pci")
+	source "pci_msi.h"
+
+	@NoRuntime depends embox.kernel.msi.irq_msi
+
+}

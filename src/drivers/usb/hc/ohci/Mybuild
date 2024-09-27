@@ -1,0 +1,11 @@
+package embox.driver.usb.hc
+
+module ohci_pci {
+	option string log_level="LOG_ERR"
+
+	source "ohci_pci.c"
+
+	depends embox.driver.usb.core
+	depends embox.driver.usb.hub
+	depends embox.driver.pci
+}

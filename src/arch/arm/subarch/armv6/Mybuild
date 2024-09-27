@@ -1,0 +1,5 @@
+package embox.arch.arm.armv6
+
+module arch extends embox.arch.arch {
+	source "arch.c"
+}

@@ -1,0 +1,34 @@
+package embox.driver.serial
+
+module diag extends embox.driver.diag.diag_api {
+	source "diag_serial.c"
+
+	@IncludeExport(path="drivers/serial")
+	source "diag_serial.h"
+}
+
+module at91_uart extends embox.driver.diag.diag_api {
+	option number baud_rate
+
+	source "at91_uart.c"
+}
+
+module mspdebug_console extends embox.driver.diag.diag_api {
+	source "mspdebug_simio.c"
+}
+
+module msp430usci extends embox.driver.diag.diag_api {
+	source "msp430usci.c"
+}
+
+module pic32mx_uart extends embox.driver.diag.diag_api {
+	source "pic32mx_uart.c"
+}
+
+@BuildDepends(third_party.bsp.multiclet.core)
+module multiclet extends embox.driver.diag.diag_api {
+	option number baud_rate
+	source "multiclet_uart.c"
+
+	depends third_party.bsp.multiclet.core
+}

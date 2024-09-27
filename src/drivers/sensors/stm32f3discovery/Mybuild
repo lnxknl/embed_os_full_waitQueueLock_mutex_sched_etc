@@ -1,0 +1,24 @@
+package embox.driver.sensors.stm32f3discovery
+
+/* L3GD20 and LSM303DLHC are used */
+/* L3GD20 and LSM303DLHC are used */
+/* I3G4250D and LSM303AGR are used  in E02 revision */ 
+@BuildDepends(third_party.bsp.st_bsp_api)
+module gyro {
+	option string log_level="LOG_ERR"
+
+	source "stm32f3discovery_gyro.c"
+
+	@IncludeExport(path="drivers/sensors", target_name="gyro.h")
+	source "stm32f3discovery_gyro.h"
+}
+
+@BuildDepends(third_party.bsp.st_bsp_api)
+module acc {
+	option string log_level="LOG_ERR"
+
+	source "stm32f3discovery_acc.c"
+
+	@IncludeExport(path="drivers/sensors", target_name="acc.h")
+	source "stm32f3discovery_acc.h"
+}

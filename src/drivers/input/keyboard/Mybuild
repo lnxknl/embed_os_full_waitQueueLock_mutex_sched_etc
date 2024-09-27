@@ -1,0 +1,14 @@
+package embox.driver.input.keyboard
+
+module keymap {
+	source "keymap.c"
+}
+
+module ps_keyboard {
+	option string log_level="LOG_ERR"
+
+	@IncludeExport(path="drivers")
+	source "ps_keyboard.h"
+
+	source "ps_keyboard.c"
+}

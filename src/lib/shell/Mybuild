@@ -1,0 +1,10 @@
+package embox.lib
+
+static module Tokenizer {
+	source "tokenizer.c"
+
+	@IncludeExport(path="cmd")
+	source "cmdline.h"
+
+//	@NoRuntime depends embox.compat.libc.type
+}

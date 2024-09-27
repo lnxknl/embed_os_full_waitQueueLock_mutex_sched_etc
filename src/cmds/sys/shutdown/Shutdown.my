@@ -1,0 +1,25 @@
+package embox.cmd.sys
+
+@AutoCmd
+@Cmd(name = "shutdown",
+	help = "turn off or reboot the system",
+	man = '''
+		NAME
+			shutdown - turn off or reboot the system
+		SYNOPSIS
+			shutdown -p
+			shutdown -r
+		OPTIONS
+			-p turn off the system
+			-r reboot the system
+		AUTHORS
+			Anton Bondarev
+			Roman Kurbatov
+	''')
+module shutdown {
+	source "shutdown.c"
+
+	@NoRuntime depends embox.compat.libc.stdio.all
+	@NoRuntime depends embox.compat.libc.str
+	@NoRuntime depends platform.platform_shutdown
+}

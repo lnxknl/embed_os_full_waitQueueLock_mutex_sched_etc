@@ -1,0 +1,66 @@
+package embox.cmd.net
+
+@AutoCmd
+@Cmd(name = "netmanager",
+	help = "Simple network manager",
+	man = '''
+		SYNOPSIS
+			netmanager [iface]
+		NAME
+			netmanager -- try to receive net parameters
+			automatically or take it from default config
+			if fails
+		OPTIONS
+		AUTHORS
+			Denis Deryugin <deryugin.denis@gmail.com>
+	''')
+
+
+module netmanager {
+	option string conf_file="network"
+
+	source "netmanager.c"
+
+	depends embox.cmd.net.ifconfig
+	depends embox.cmd.net.route
+
+	depends embox.compat.libc.stdio.open
+	depends embox.compat.libc.stdio.print_impl
+	depends embox.compat.libc.stdio.scanf
+	depends embox.compat.libc.stdlib.system
+	depends embox.compat.libc.str
+	depends embox.net.lib.getifaddrs
+}
+
+
+@AutoCmd
+@Cmd(name = "net_service",
+	help = "Simple network manager",
+	man = '''
+		SYNOPSIS
+			netmanager [iface]
+		NAME
+			netmanager -- try to receive net parameters
+			automatically or take it from default config
+			if fails
+		OPTIONS
+		AUTHORS
+			Denis Deryugin <deryugin.denis@gmail.com>
+	''')
+
+
+module net_service {
+	source "net_service.c"
+
+	depends embox.cmd.net.ifconfig
+	depends embox.cmd.net.route
+
+	depends embox.net.af_netlink
+
+	depends embox.compat.libc.stdio.open
+	depends embox.compat.libc.stdio.print_impl
+	depends embox.compat.libc.stdio.scanf
+	depends embox.compat.libc.stdlib.system
+	depends embox.compat.libc.str
+}
+

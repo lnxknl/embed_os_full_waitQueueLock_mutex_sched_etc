@@ -1,0 +1,16 @@
+package embox.driver.fpga
+
+module core {
+	option string log_level="LOG_ERR"
+	option number fpga_pool_sz=1
+
+	@IncludeExport(path="drivers/")
+	source "fpga.h"
+
+	source "fpga.c"
+
+	depends embox.device.common
+	depends embox.mem.pool
+	@NoRuntime depends embox.lib.libds
+	depends embox.device.char_dev
+}

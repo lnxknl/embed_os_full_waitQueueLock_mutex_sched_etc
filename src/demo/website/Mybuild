@@ -1,0 +1,14 @@
+package embox.demo
+
+@NoCode
+module website {
+	@InitFS
+	source "index.html",
+		"em_big.png",
+		"em_small.png",
+		"favicon.ico",
+		"matmex.gif",
+		"mm_en.gif"
+
+	depends embox.fs.driver.initfs
+}

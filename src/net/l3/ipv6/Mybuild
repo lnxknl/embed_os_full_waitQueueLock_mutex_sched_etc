@@ -1,0 +1,11 @@
+package embox.net
+
+module ipv6 {
+	option string log_level="LOG_NONE"
+	source "ip6_input.c"
+	depends embox.net.skbuff
+
+	source "ip6_output.c"
+	depends embox.net.skbuff
+	depends embox.net.lib.ipv6
+}

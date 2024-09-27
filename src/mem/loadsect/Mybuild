@@ -1,0 +1,14 @@
+package embox.mem
+
+module loadsect {
+	option string log_level="LOG_ERR"
+
+	source "loadsect.c"
+
+	depends sections
+}
+
+module sections {
+	@Generated(script="$(MAKE) -f mk/script/user-lds-sections.mk")
+	source "sections.c"
+}

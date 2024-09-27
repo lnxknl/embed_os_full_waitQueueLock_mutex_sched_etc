@@ -1,0 +1,29 @@
+package stm32f3_sensors.cmd
+
+@AutoCmd
+@Cmd(name="sensors", help="Read gyroscope and accelerometer", man="")
+@BuildDepends(third_party.bsp.st_bsp_api)
+module sensors {
+	source "sensors.c"
+
+	depends embox.lib.libkalman
+
+	depends embox.driver.sensors.stm32f3discovery.acc
+	depends embox.driver.sensors.stm32f3discovery.gyro
+	depends stm32f3_sensors.libmisc.led
+}
+
+@AutoCmd
+@Cmd(name="motor_control", help="Periodically run motor right or left", man="")
+@BuildDepends(third_party.bsp.st_bsp_api)
+module motor_control {
+	source "motor_control.c"
+
+	depends stm32f3_sensors.libfilters.filtered_derivative
+	depends stm32f3_sensors.libfilters.dynamic_window
+	depends embox.driver.sensors.stm32f3discovery.acc
+	depends embox.driver.sensors.stm32f3discovery.gyro
+	depends stm32f3_sensors.libactuators.motor
+	depends stm32f3_sensors.libmisc.led
+	depends stm32f3_sensors.libmisc.button
+}

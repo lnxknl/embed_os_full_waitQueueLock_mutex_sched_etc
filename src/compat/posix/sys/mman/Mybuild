@@ -1,0 +1,58 @@
+package embox.compat.posix.sys.mman
+
+static module msync {
+	option string log_level="LOG_INFO"
+
+	source "msync.c"
+
+	@NoRuntime depends embox.lib.libds
+}
+
+@NoCode
+static module libmman {
+	depends msync
+}
+
+@DefaultImpl(mmap_stub)
+abstract module mmap_api {
+}
+
+module mmap extends mmap_api {
+	option string log_level="LOG_NONE"
+
+	source "mmap.c"
+
+	depends embox.kernel.task.idesc.idesc_mmap
+	depends embox.mem.mmap
+	depends embox.mem.phymem
+	depends embox.kernel.task.resource.phymem
+}
+
+module mmap_stub extends mmap_api {
+	option string log_level="LOG_NONE"
+
+	source "mmap_stub.c"
+	depends embox.kernel.task.idesc.idesc_mmap_api
+}
+
+module mprotect {
+	source "mprotect.c"
+
+	depends mmap
+}
+
+@DefaultImpl(shm_mem_stub)
+abstract module shm_mem {
+}
+
+module shm_mem_nommu extends shm_mem {
+	source "shm.c"
+
+	option number amount_shmem_objs=20
+
+	depends mmap
+}
+
+module shm_mem_stub extends shm_mem {
+	source "shm_stub.c"
+}

@@ -1,0 +1,54 @@
+## Editors
+# Sublime
+/*.sublime-workspace
+# Vim
+*.sw[a-z]
+.*.sw[a-z]
+*~
+/tags
+#QtCreator
+embox.cflags
+embox.config
+embox.creator
+embox.creator.user
+embox.cxxflags
+embox.files
+embox.includes
+
+## Build
+/*.img
+
+## Other
+/.dep.inc
+/.dropbox
+/.tmp
+/GNUmakefile
+/build
+/conf
+/core
+/dist
+/work
+/.vscode
+/download
+mk/.cache
+mk/GNUmakefile
+/nbproject
+scripts/continuous/fs/mountpoint
+scripts/qemu/beagle/bb_nandflash_ecc
+scripts/expect/*.log
+scripts/autotest/*.log
+scripts/autotest/*.img
+third-party/ti/ipc_1_24_00_16
+third-party/ti/syslink_2_21_01_05
+/ext_project
+project/website/cmds/http_admin/cgi-bin/leds.txt
+# Vagrant
+/.vagrant
+/*-console.log
+# Idea and Cmake
+.idea/
+backup/
+cmake-build-debug/
+src/.idea/
+src/CMakeLists.txt
+src/cmake-build-debug/

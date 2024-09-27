@@ -1,0 +1,25 @@
+package embox.compat.posix.time.tests
+
+module asctime_test {
+	source "asctime_test.c"
+}
+
+module mktime_test {
+	source "mktime_test.c"
+}
+
+module gmtime_test {
+	source "gmtime_test.c"
+}
+
+module time_test {
+	source "time_test.c"
+}
+
+module strftime_test {
+	source "strftime_test.c"
+}
+
+module strptime_test {
+	source "strptime_test.c"
+}

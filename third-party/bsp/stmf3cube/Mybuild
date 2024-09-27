@@ -1,0 +1,4 @@
+package third_party.bsp.stmf3cube
+
+abstract module stm32f3_conf {
+}

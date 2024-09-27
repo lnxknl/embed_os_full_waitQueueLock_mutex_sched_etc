@@ -1,0 +1,12 @@
+/*FIXME mybuild wrong packet name */
+package embox.driver.video
+
+@BuildDepends(platform.efm32.efm32_bsp)
+module efm32_lcd {
+	option string log_level="LOG_ERR"
+
+	option number start_with_logo = 1
+
+	source "efm32_lcd.c"
+	@NoRuntime depends platform.efm32.efm32_bsp
+}

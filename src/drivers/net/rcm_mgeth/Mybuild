@@ -1,0 +1,49 @@
+package embox.driver.net
+
+module rcm_mgeth {
+	option string log_level="LOG_ERR"
+
+	option number base_addr=0x01014000
+	option number irq_num=51
+
+	source "rcm_mgeth.c"
+
+	depends embox.kernel.irq_api
+	depends embox.net.dev
+	depends embox.net.entry_api
+	depends embox.net.core
+	@NoRuntime depends embox.net.util.show_packet
+
+	@NoRuntime depends platform.rc_module.driver.rcm_sctl
+	@NoRuntime depends embox.driver.net.phy_rcm_sgmii
+	@NoRuntime depends rcm_mdio
+	@NoRuntime depends rcm_mgpio
+}
+
+module rcm_mgpio {
+	option string log_level="LOG_ERR"
+
+	option number base_addr=0x01084000
+
+	source "rcm_mgpio.c"
+}
+
+module rcm_mdio {
+	option string log_level="LOG_ERR"
+
+	option number base_addr=0x01080000
+
+	source "rcm_mdio.c"
+	@IncludeExport(path="driver")
+	source "rcm_mdio.h"
+}
+
+module phy_rcm_sgmii {
+	option string log_level="LOG_ERR"
+
+	option number base_addr=0x01086000
+
+	source "phy_rcm_sgmii.c"
+	@IncludeExport(path="driver")
+	source "phy_rcm_sgmii.h"
+}

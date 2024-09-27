@@ -1,0 +1,151 @@
+package embox.net
+
+module raw_sock {
+	source "raw_sock.c"
+
+	depends net_sock
+	depends embox.compat.libc.assert
+	depends embox.compat.libc.str
+	depends embox.net.skbuff
+	depends embox.net.sock
+	@NoRuntime depends embox.lib.libds
+}
+
+module tcp_sock {
+	option string log_level="LOG_NONE"
+
+	source "tcp_sock.c"
+	option number amount_tcp_sock=20
+	option number max_simultaneous_tx_pack = 0
+	option number def_tcp_win_val = 16384
+
+	depends route
+	depends sock
+	depends tcp
+	depends skbuff
+	depends embox.compat.posix.net.inet_addr
+	depends embox.compat.libc.str     /* memset, memcpy */
+	depends embox.mem.pool
+	depends net_sock
+}
+
+module udp_sock {
+	option string log_level="LOG_NONE"
+
+	source "udp_sock.c"
+
+	depends net_sock
+	depends embox.compat.libc.assert
+	depends embox.compat.libc.str
+	depends embox.net.lib.udp
+	@NoRuntime depends embox.lib.libds
+}
+
+module af_inet {
+	source "af_inet.c"
+	option number amount_inet_sock=20
+
+	depends sock
+	depends route
+	depends family
+	@NoRuntime depends embox.lib.libds
+	depends net_sock
+}
+
+module af_inet6 {
+	source "af_inet6.c"
+	option number amount_inet6_sock=20
+
+	depends sock
+	depends family
+	@NoRuntime depends embox.lib.libds
+	depends net_sock
+}
+
+@DefaultImpl(no_af_packet)
+abstract module af_packet_api { }
+
+module af_packet extends af_packet_api {
+	source "af_packet.c"
+	option number amount_sockets=20
+
+	depends sock
+	depends packet
+	depends family
+	depends net_sock
+}
+
+module no_af_packet extends af_packet_api {
+	source "no_af_packet.c"
+	option number amount_sockets=20
+
+	depends sock
+	depends packet
+	depends net_sock
+}
+
+module af_unix {
+	source "af_unix.c"
+
+	depends sock
+	depends family
+	depends net_sock
+}
+
+@DefaultImpl(netlink_stub)
+abstract module netlink {
+	@IncludeExport(path="linux/", target_name="rtnetlink.h")
+	source "uapi_linux_rtnetlink.h"
+
+	@IncludeExport(path="linux/", target_name="netlink.h")
+	source "uapi_linux_netlink.h"
+
+	@IncludeExport(path="linux/", target_name="if_link.h")
+	source "uapi_linux_if_link.h"
+}
+
+module af_netlink extends netlink {
+	option number max_socks=1
+
+	source "af_netlink.c"
+
+	@IncludeExport(path="net/", target_name="netlink.h")
+	source "netlink.h"
+
+	depends sock
+	depends family
+	depends net_sock
+}
+
+module netlink_stub extends netlink {
+	@IncludeExport(path="net/", target_name="netlink.h")
+	source "netlink_stub.h"
+}
+
+module socket {
+	option string log_level="LOG_NONE"
+
+	source "ksocket.c"
+	source "socket_desc.c"
+	option number connect_timeout=5000
+
+	depends embox.compat.libc.str
+	depends embox.net.sock
+	depends embox.net.dev //ksocket, netdev_get_by_name
+	@NoRuntime depends embox.lib.libds
+	@NoRuntime depends embox.compat.posix.net.socket // for task_idx_ops_socket
+	depends embox.kernel.task.resource.idesc_table
+}
+
+module family {
+	source "family.c"
+
+	@NoRuntime depends embox.lib.libds
+}
+
+module net_sock {
+	source "net_sock.c"
+
+	@NoRuntime depends embox.lib.libds
+}
+

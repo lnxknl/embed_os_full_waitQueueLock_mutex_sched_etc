@@ -1,0 +1,6 @@
+package embox.arch.arm
+
+module stackframe extends embox.arch.stackframe {
+	source "stack_iter.h", "stack_iter.c"
+	depends embox.arch.arm.armlib.context
+}

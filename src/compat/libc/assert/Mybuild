@@ -1,0 +1,12 @@
+package embox.compat.libc
+
+static module assert {
+	option boolean banner_print = true
+
+	source "assert.c"
+	source "assert_impl.h"
+
+	@NoRuntime depends embox.lib.printk
+	@NoRuntime depends embox.compat.libc.stdio.sprintf
+	@NoRuntime depends platform.platform_shutdown
+}

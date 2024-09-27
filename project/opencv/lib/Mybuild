@@ -1,0 +1,15 @@
+package platform.opencv.lib
+
+@BuildDepends(third_party.lib.opencv.all)
+@Build(stage=2)
+static module cv_embox_imshowfb {
+	option string log_level="LOG_ERR"
+
+	@IncludeExport
+	source "cv_embox_imshowfb.hpp"
+
+	source "cv_embox_imshowfb.cpp"
+
+	depends embox.driver.video.fb
+	depends third_party.lib.opencv.all
+}

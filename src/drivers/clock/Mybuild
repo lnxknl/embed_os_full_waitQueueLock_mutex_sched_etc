@@ -1,0 +1,4 @@
+package embox.driver.clock
+
+module no_clock {
+}

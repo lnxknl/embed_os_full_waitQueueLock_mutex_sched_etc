@@ -1,0 +1,10 @@
+package embox.driver.clock
+
+module pit {
+	source "pit.c"
+
+	option number irq_num=0
+
+	depends embox.kernel.irq
+	depends embox.kernel.time.clock_source
+}

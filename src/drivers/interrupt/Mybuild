@@ -1,0 +1,8 @@
+package embox.driver.interrupt
+
+abstract module irqctrl_api { }
+
+module no_interrupts extends irqctrl_api {
+	source "no_interrupts.h"
+	source "no_interrupts.c"
+}

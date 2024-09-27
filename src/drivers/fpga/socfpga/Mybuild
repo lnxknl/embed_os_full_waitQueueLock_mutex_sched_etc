@@ -1,0 +1,13 @@
+package embox.driver.fpga
+
+module socfpga {
+	option string log_level="LOG_ERR"
+
+	option number mgr_base_addr=0xFF706000
+	option number mgr_data_addr=0xFFB90000
+	option number irq_num=207
+
+	source "socfpga.c"
+
+	depends embox.driver.fpga.core
+}

@@ -1,0 +1,22 @@
+package platform.dialog.da14695
+
+@BuildDepends(third_party.bsp.dialog.da14695.system_init)
+static module arch_init extends embox.arch.arch {
+	option number pll_lock_irq    = 33
+	option number xtal32m_rdy_irq = 26
+
+	/* Flash size in Kb */
+	option number flash_size=1024
+
+	@Cflags("-Wno-undef")
+
+	source "arch.c",
+		"clk.c"
+
+	@NoRuntime depends third_party.bsp.dialog.da14695.system_init
+	@NoRuntime depends da1469x_lds_quirk
+}
+
+module da1469x_lds_quirk {
+	source "da1469x_quirk.lds.S"
+}

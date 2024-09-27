@@ -1,0 +1,39 @@
+package embox.driver.usb
+
+module core {
+	option string log_level="LOG_ERR"
+	option number usb_req_hnd_priority = 200
+
+	/* Global options */
+	option number usb_max_hcd = 2
+	option number usb_max_hcd_devs = 127
+	option number usb_max_dev = 32
+	option number usb_max_hub = 8
+	option number usb_max_req = 64
+	/* Per device options */
+	option number usb_dev_max_interfaces = 4
+	option number usb_dev_max_endp = 16
+
+	option number urb_alignment = 1024
+
+	source "usb_core.c",
+		"usb_queue.c",
+		"usb_config.c"
+
+	source "usb_driver.c"
+}
+
+module hub {
+	option string log_level="LOG_ERR"
+	option boolean use_thread = false
+
+	source "usb_hub.c"
+
+	depends core
+}
+
+module driver_example {
+	source "usb_driver_example.c"
+
+	depends core
+}

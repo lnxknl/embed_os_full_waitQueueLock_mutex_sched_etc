@@ -1,0 +1,167 @@
+/**
+ * @file
+ * @brief C++ forwarding header
+ * @date 05.07.12
+ * @author Ilia Vaprol
+ */
+
+#ifndef CMATH_
+#define CMATH_
+
+#include <stdbool.h>
+#include <math.h>
+
+#undef isnan
+#undef isfinite
+#undef isinf
+#undef isnormal
+#undef signbit
+#undef isgreater
+#undef isless
+#undef isgreaterequal
+#undef islessequal
+#undef islessgreater
+#undef isunordered
+#undef fpclassify
+#undef fmax
+#undef fmin
+#undef round
+#undef roundf
+#undef roundl
+
+namespace std {
+	using ::floor;
+	using ::pow;
+	using ::ceil;
+	using ::acos;
+	using ::fmod;
+	using ::modf;
+	using ::asin;
+	using ::frexp;
+	using ::atan;
+	using ::ldexp;
+	using ::atan2;
+	using ::fabs;
+	using ::cos;
+	using ::sin;
+	using ::tan;
+	using ::cosh;
+	using ::tanh;
+	using ::exp;
+	using ::log;
+	using ::sinh;
+	using ::log10;
+	using ::sqrt;
+	using ::round;
+	using ::roundf;
+	using ::roundl;
+
+	static inline float floor(float x) {
+		return floorf(x);
+	}
+
+	static inline float abs(float x) {
+		return fabs(x);
+	}
+
+	static inline double abs(double x) {
+		if (x < 0) {
+			return -x;
+		}
+
+		return x;
+	}
+
+	static inline long long int abs(long long int x) {
+		if (x < 0) {
+			return -x;
+		}
+
+		return x;
+	}
+
+	static inline long double floor(long double x) {
+		return floorl(x);
+	}
+
+	static inline float pow(float x, float y) {
+		return powf(x, y);
+	}
+
+	static inline long double pow(long double x, long double y) {
+		return powl(x, y);
+	}
+
+	static inline bool isnan(float value) {
+		return __builtin_isnanf(value);
+	}
+
+	static inline bool isnan(double value) {
+		return __builtin_isnan(value);
+	}
+
+	static inline bool isnan(long double value) {
+		return __builtin_isnanl(value);
+	}
+
+	static inline bool isinf(float value) {
+		return __builtin_isinf(value);
+	}
+
+	static inline bool isinf(double value) {
+		return __builtin_isinf(value);
+	}
+
+	static inline bool isinf(long double value) {
+		return __builtin_isinf(value);
+	}
+
+	static inline bool signbit(float value) {
+		return __builtin_signbitf(value);
+	}
+
+	static inline bool signbit(double value) {
+		return __builtin_signbit(value);
+	}
+
+	static inline bool signbit(long double value) {
+		return __builtin_signbitl(value);
+	}
+
+	static inline float round(float __x) {
+		return __builtin_roundf(__x);
+	}
+
+	static inline long double round(long double __x) {
+		return __builtin_roundl(__x);
+	}
+
+	static inline float fmax(float __x, float __y) {
+		return __builtin_fmaxf(__x, __y);
+	}
+
+	static inline long double fmax(long double __x, long double __y) {
+		return __builtin_fmaxl(__x, __y);
+	}
+
+	static inline float fmin(float __x, float __y) {
+		return __builtin_fminf(__x, __y);
+	}
+
+	static inline long double fmin(long double __x, long double __y) {
+		return __builtin_fminl(__x, __y);
+	}
+
+	static inline double max(double x, int y) {
+		double _y = (double) y;
+
+		if (_y > x) {
+			return _y;
+		}
+
+		return x;
+	}
+
+} // namespace std
+
+#endif /* CMATH_ */

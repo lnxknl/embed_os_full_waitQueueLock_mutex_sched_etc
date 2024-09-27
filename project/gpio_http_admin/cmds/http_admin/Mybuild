@@ -1,0 +1,11 @@
+package project.gpio_httpd_admin
+
+module http_admin {
+
+	@InitFS(target_dir="http_admin")
+	source "partials",
+	       "css",
+	       "index.html",
+	       "ui-bootstrap-tpls-0.12.1.min.js",
+	       "app.js"
+}

@@ -1,0 +1,4 @@
+package embox.compat.posix
+
+@DefaultImpl(file_system_stub)
+abstract module file_system { }

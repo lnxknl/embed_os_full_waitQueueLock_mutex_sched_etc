@@ -1,0 +1,12 @@
+package embox.driver.mtd
+
+module nand_dev {
+	option string log_level="LOG_ERR"
+
+	@IncludeExport(path="drivers/mtd")
+	source "nand.h"
+
+	source "nand.c"
+
+	depends embox.driver.block_dev
+}

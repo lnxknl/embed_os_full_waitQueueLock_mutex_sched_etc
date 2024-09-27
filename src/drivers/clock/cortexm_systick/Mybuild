@@ -1,0 +1,7 @@
+package embox.driver.clock
+
+module cortexm_systick {
+	source "cortexm_systick.c"
+
+	depends embox.kernel.time.clock_source
+}

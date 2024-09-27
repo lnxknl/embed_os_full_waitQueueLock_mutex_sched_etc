@@ -1,0 +1,42 @@
+package embox.driver.input
+
+module core {
+	option number event_queue_len = 16
+
+	source "input_dev.c"
+
+	@IncludeExport(path="drivers/input")
+	source "input_dev.h"
+	@IncludeExport(path="drivers/input")
+	source "keymap.h"
+
+	@IncludeExport(path="drivers/input")
+	source "input_codes.h"
+
+	depends input_dev_handler
+	depends embox.kernel.irq_api
+	@NoRuntime depends embox.lib.libds
+}
+
+@DefaultImpl(input_dev_nofs)
+abstract module input_dev_handler {
+
+}
+
+module input_dev_nofs extends input_dev_handler {
+	option string log_level="LOG_ERR"
+	option number hnd_priority = 200
+
+	source "input_dev_nofs.c"
+
+	depends embox.kernel.lthread.lthread
+}
+
+module input_dev_devfs extends input_dev_handler {
+	option string log_level="LOG_ERR"
+	option number input_dev_cnt = 4
+
+	source "input_dev_devfs.c"
+
+	depends embox.device.char_dev
+}

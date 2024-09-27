@@ -1,0 +1,9 @@
+
+package embox.service
+
+module http_admin {
+	@InitFS(target_dir="http_admin")
+	source "index.html",
+			"app.js"
+
+}

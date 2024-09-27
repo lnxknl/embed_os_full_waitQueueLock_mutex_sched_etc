@@ -1,0 +1,39 @@
+package embox.compat.libc
+
+@DefaultImpl(wchar_extended_none)
+abstract module wchar_extended {
+}
+
+static module wchar {
+	source "wcscmp.c"
+	source "wcsncpy.c"
+	source "wcstrtoimax.c"
+	source "wcstrtoumax.c"
+	source "wctype.c"
+	source "wcslen.c"
+	source "wcsnlen.c"
+	source "wmemset.c"
+	source "wmemmove.c"
+	source "wmemcpy.c"
+	source "wmemcmp.c"
+	source "wmemchr.c"
+	source "wcsncasecmp.c"
+	source "vswprintf.c"
+	source "wprintf_impl.c"
+	source "wcstol.c"
+	source "wcstoll.c"
+	source "wcstoul.c"
+	source "wcstoull.c"
+	source "putwc.c"
+
+	depends wchar_extended
+}
+
+module wchar_extended_none extends wchar_extended {
+	source "wchar_extended_none.h"
+}
+
+static module wchar_extended_stub extends wchar_extended {
+	source "wchar_extended_stubs.h"
+	source "wchar_stubs.c"
+}

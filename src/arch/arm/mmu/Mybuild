@@ -1,0 +1,45 @@
+package embox.arch.arm
+
+module cache extends embox.arch.cache {
+	source "cache.c"
+}
+
+module mmu_section extends embox.mem.vmem {
+	option number page_size=0x100000
+	option number domain_access=3
+	option string log_level="LOG_ERR"
+
+	source "mmu.h"
+
+	source "mmu_common.c"
+
+	source "mmu_section.c"
+
+	depends embox.arch.arm.cache
+	depends embox.mem.vmem_header
+	depends embox.mem.vmem_alloc_pool
+	depends embox.mem.vmem_depends
+}
+
+module mmu_small_page extends embox.mem.vmem {
+	option number page_size=4096
+	option number domain_access=3
+	option string log_level="LOG_NONE"
+	option number v5_format=0 /* Required for ARMv5 translation */
+
+	source "mmu.h"
+
+	source "mmu_common.c"
+
+	source "mmu_small_page.c"
+
+	depends embox.arch.arm.cache
+	depends embox.mem.vmem_header
+	depends embox.mem.vmem_alloc_pool
+	depends embox.mem.vmem_depends
+	depends embox.arch.arm.armlib.mem_barriers
+}
+
+module mmuinfo extends embox.arch.mmuinfo {
+	source "mmuinfo.c"
+}

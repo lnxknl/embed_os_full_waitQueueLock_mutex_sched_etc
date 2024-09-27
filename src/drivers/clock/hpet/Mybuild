@@ -1,0 +1,11 @@
+package embox.driver.clock
+
+@BuildDepends(third_party.lib.acpica)
+module hpet {
+	option string log_level="LOG_NONE"
+
+	source "hpet.c"
+
+	@NoRuntime depends embox.kernel.time.clock_source
+	depends third_party.lib.acpica
+}

@@ -1,0 +1,12 @@
+package embox.driver.video
+
+
+module dw_hdmi {
+	option string log_level="LOG_NONE"
+
+	option number base_addr
+
+	source "dw_hdmi.c"
+
+	depends embox.driver.clk.ccm_imx6
+}

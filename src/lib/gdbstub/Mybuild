@@ -1,0 +1,9 @@
+package embox.lib
+
+abstract module gdbstub {
+	source "gdbstub.c"
+	source "utils.c"
+
+	@IncludeExport(path="debug")
+	source "gdbstub.h"
+}

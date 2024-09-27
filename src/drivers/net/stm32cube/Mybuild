@@ -1,0 +1,127 @@
+package embox.driver.net
+
+@BuildDepends(third_party.bsp.st_bsp_api)
+module stm32f2cube_eth {
+	option number irq = 61
+
+	source "stm32cube_eth.c"
+	source "stm32f2cube_eth_msp.c"
+	@IncludeExport(path="drivers/net", target_name="stm32cube_eth.h")
+	source "stm32f2cube_eth.h"
+
+	option string log_level="LOG_ERR"
+	depends embox.net.skbuff
+	depends embox.net.l2.ethernet
+	depends embox.kernel.irq_api
+	depends embox.net.dev
+	depends embox.net.core
+	depends embox.net.entry_api
+	depends embox.net.util.show_packet
+}
+
+@BuildDepends(third_party.bsp.st_bsp_api)
+module stm32f4cube_eth {
+	option number irq = 61
+
+	source "stm32cube_eth.c"
+	source "stm32f4cube_eth_msp.c"
+	@IncludeExport(path="drivers/net", target_name="stm32cube_eth.h")
+	source "stm32f4cube_eth.h"
+
+	option string log_level="LOG_ERR"
+	depends embox.net.skbuff
+	depends embox.net.l2.ethernet
+	depends embox.kernel.irq_api
+	depends embox.net.dev
+	depends embox.net.core
+	depends embox.net.entry_api
+	depends embox.net.util.show_packet
+}
+
+@BuildDepends(third_party.bsp.st_bsp_api)
+module stm32f7cube_eth {
+	option number irq = 61
+
+	source "stm32cube_eth.c"
+	source "stm32f7cube_eth_msp.c"
+	@IncludeExport(path="drivers/net", target_name="stm32cube_eth.h")
+	source "stm32f7cube_eth.h"
+
+	option string log_level="LOG_ERR"
+	depends embox.net.skbuff
+	depends embox.net.l2.ethernet
+	depends embox.kernel.irq_api
+	depends embox.net.dev
+	depends embox.net.core
+	depends embox.net.entry_api
+	depends embox.net.util.show_packet
+	depends third_party.bsp.st_bsp_api
+}
+
+@BuildDepends(third_party.bsp.st_bsp_api)
+module stm32h7cube_eth_nucleo {
+	option string log_level="LOG_ERR"
+
+	option number irq = 61
+
+	option number use_rmii = 1
+
+	source "stm32h7cube_eth_msp_nucleo.c"
+	source "stm32cube_eth_h7.c"
+	@IncludeExport(path="drivers/net", target_name="stm32cube_eth.h")
+	source "stm32h7cube_eth.h"
+
+	depends embox.net.skbuff
+	depends embox.net.l2.ethernet
+	depends embox.kernel.irq_api
+	depends embox.net.dev
+	depends embox.net.core
+	depends embox.net.entry_api
+	depends embox.net.util.show_packet
+	depends third_party.bsp.st_bsp_api
+}
+
+@BuildDepends(third_party.bsp.st_bsp_api)
+module stm32h7cube_eth_745i_discovery {
+	option string log_level="LOG_ERR"
+
+	option number irq = 61
+
+	option number use_rmii = 0
+
+	source "stm32h7cube_eth_msp_745i_discovery.c"
+	source "stm32cube_eth_h7.c"
+	@IncludeExport(path="drivers/net", target_name="stm32cube_eth.h")
+	source "stm32h7cube_eth.h"
+
+	depends embox.net.skbuff
+	depends embox.net.l2.ethernet
+	depends embox.kernel.irq_api
+	depends embox.net.dev
+	depends embox.net.core
+	depends embox.net.entry_api
+	depends embox.net.util.show_packet
+	depends third_party.bsp.st_bsp_api
+}
+
+@BuildDepends(third_party.bsp.st_bsp_api)
+module stm32h7cube_eth_common {
+	option string log_level="LOG_ERR"
+
+	option number irq = 61
+
+	option number use_rmii = 1
+
+	source "stm32cube_eth_h7.c"
+	@IncludeExport(path="drivers/net", target_name="stm32cube_eth.h")
+	source "stm32h7cube_eth.h"
+
+	depends embox.net.skbuff
+	depends embox.net.l2.ethernet
+	depends embox.kernel.irq_api
+	depends embox.net.dev
+	depends embox.net.core
+	depends embox.net.entry_api
+	depends embox.net.util.show_packet
+	depends third_party.bsp.st_bsp_api
+}

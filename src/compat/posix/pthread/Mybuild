@@ -1,0 +1,44 @@
+package embox.compat.posix
+
+static module pthreads {
+	source "pthread.c"
+
+	source "pthread_cond.c"
+	source "pthread_mutex.c"
+	source "pthread_cancel.c"
+
+	depends embox.kernel.thread.core
+	depends embox.kernel.thread.sync
+	depends embox.kernel.task.syslib.thread_key_table
+}
+
+static module pthread_key {
+	source "pthread_key.c"
+
+	depends pthreads
+	depends embox.kernel.thread.thread_local_heap
+}
+
+static module pthread_rwlock {
+	source "pthread_rwlock.c"
+}
+
+static module pthread_barrier {
+	source "pthread_barrier.c"
+
+	depends embox.compat.posix.pthreads
+	depends embox.compat.posix.semaphore
+}
+
+@DefaultImpl(pthread_stack_stub)
+abstract module pthread_stack {
+}
+
+static module pthread_stack_stub extends pthread_stack {
+	source "pthread_stack_stub.c"
+}
+
+static module pthread_scope_stub {
+	source "pthread_scope_stub.c"
+}
+

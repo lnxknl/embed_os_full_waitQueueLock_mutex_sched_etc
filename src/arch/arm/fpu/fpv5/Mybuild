@@ -1,0 +1,24 @@
+package embox.arch.arm.fpu
+
+module cortex_m7_fp {
+	@IncludeExport(path="armv7m",target_name="fpu_regs.h")
+	source "cortex_m7_fp_regs.h"
+
+	depends fpv5
+}
+
+module cortex_m4_fp {
+	@IncludeExport(path="armv7m",target_name="fpu_regs.h")
+	source "cortex_m4_fp_regs.h"
+
+	depends fpv5
+}
+
+module fpv5 extends fpu {
+	option string log_level="LOG_NONE"
+
+	@IncludeExport(path="arm")
+	source "fpu.h", "fpu_macro.s"
+
+	source "fpu.c"
+}

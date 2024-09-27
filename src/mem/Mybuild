@@ -1,0 +1,9 @@
+package embox.mem
+
+module phymem {
+	option string log_level="LOG_INFO" /*log_info */
+
+	source "phymem.c"
+	depends embox.mem.vmem_device_memory
+	depends embox.mem.sections
+}

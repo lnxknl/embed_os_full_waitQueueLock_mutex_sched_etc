@@ -1,0 +1,19 @@
+package embox.compat.posix.time
+
+module months_short_names {
+	source "months_short_names.c"
+}
+
+module strptime {
+	source "strptime.c"
+
+	@NoRuntime depends months_short_names
+}
+
+module time {
+	source "ctime.c"
+	source "strftime.c"
+
+	@NoRuntime depends strptime
+	@NoRuntime depends months_short_names
+}

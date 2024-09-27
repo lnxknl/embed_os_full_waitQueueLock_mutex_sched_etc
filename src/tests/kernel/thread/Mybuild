@@ -1,0 +1,33 @@
+package embox.test.kernel.thread
+
+module thread_test {
+	source "thread_test.c"
+
+	depends embox.kernel.thread.core
+	depends embox.framework.LibFramework
+}
+
+module thread_running_test {
+	option number delay = 5000000
+
+	source "thread_running_test.c"
+
+	depends embox.kernel.thread.core
+	depends embox.framework.LibFramework
+}
+
+module thread_priority_test {
+	option number threads_quantity=256
+	source "thread_priority_test.c"
+
+	depends embox.kernel.thread.core
+	depends embox.framework.LibFramework
+}
+
+module stack_protect_test {
+	source "stack_protect_test.c"
+
+	depends embox.kernel.thread.stack_protect
+	depends embox.kernel.thread.core
+	depends embox.framework.LibFramework
+}

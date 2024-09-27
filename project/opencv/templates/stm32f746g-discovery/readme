@@ -1,0 +1,15 @@
+This example demonstrates using OpenCV library on stm32f746g-discovery board. We use the edge detection example that launch automaticly. If you want to use other OpenCV demos modify mods.conf and start_script.inc (for automaticly lauching)
+
+To run the example follow the instruction:
+1. Compile this template:
+	make confload-project/opencv/stm32f746g-discovery
+	make -j5
+
+2. Flash QSPI and in-chip flash memory.
+	I. In separate console launch openocd for your board
+		sudo ../src/openocd -f board/stm32f746g-disco.cfg
+	II. flash the image
+		./scripts/gdb_run_stm32f7_qspi.sh
+
+3. observe the resulting image on the screen and statictics in the embox uart console
+

@@ -1,0 +1,9 @@
+
+package embox.driver.usb.hc
+
+module ti81xx {
+	source "ti81xx.c"
+
+	depends embox.driver.usb.core
+	depends embox.driver.usb.hub
+}

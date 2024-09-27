@@ -1,0 +1,12 @@
+package embox.driver.gpio
+
+module imx extends api {
+	option number gpio_chip_id = 0
+	option number base_addr=0x0209c000
+	option number gpio_ports = 4
+	option string log_level="LOG_NONE"
+
+	source "imx.c"
+
+	depends embox.driver.gpio.core
+}
