@@ -75,7 +75,7 @@ boot_mmu_finish:
 
 .section .text.bootcode
 
-bootldr_start:
+bootldr_start:// @NOTE 
 	ldr     r0, =hardware_init_hook
 	cmp     r0, #0
 	beq     sw_init_hook
@@ -161,7 +161,7 @@ data_loop_done:
 
 krn_start:
 	/* kernel start */
-	bl      kernel_start
+	bl      kernel_start// @NOTE 
 
 /* returning from kernel_start */
 die:

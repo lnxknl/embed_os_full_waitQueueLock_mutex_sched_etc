@@ -360,7 +360,7 @@ static int make_task(int i, char innewtask) {
 	}
 
 	if (innewtask) {
-		return new_task("vc", run, &fbcons[i]);
+		return new_task("vc", run, &fbcons[i]);// @NOTE 
 	}
 
 	run(fbcon);

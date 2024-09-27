@@ -19,7 +19,7 @@
 #include <kernel/task/defs.h>
 #include <compiler.h>
 
-struct thread;
+struct thread;// @NOTE 
 
 struct task;
 

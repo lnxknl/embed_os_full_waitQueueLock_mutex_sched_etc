@@ -12,7 +12,7 @@
 #include <errno.h>
 #include "inherit.h"
 
-int schedee_priority_init(struct schedee *s, int new_priority) {
+int schedee_priority_init(struct schedee *s, int new_priority) {// @NOTE 
 	s->priority.base_priority = new_priority;
 	s->priority.current_priority = new_priority;
 

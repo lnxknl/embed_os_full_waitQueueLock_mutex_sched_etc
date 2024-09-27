@@ -53,7 +53,7 @@ static int runlevel_change_hook(runlevel_nr_t new_rl, int res) {
 	return res;
 }
 
-int runlevel_set(runlevel_nr_t level) {
+int runlevel_set(runlevel_nr_t level) {// @NOTE 
 	const struct mod *const volatile **start_mods, *const volatile **end_mods;
 	int (*mod_op)(const struct mod *);
 	int d;

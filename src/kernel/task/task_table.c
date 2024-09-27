@@ -31,10 +31,10 @@ static unsigned long task_table_bm[BITMAP_SIZE(TABLE_SZ)];
 
 #define BMFOUND(idx, size) (idx < size)
 
-int task_table_add(struct task *tsk) {
+int task_table_add(struct task *tsk) {// @NOTE 
 	int idx = bitmap_find_zero_bit(task_table_bm, TABLE_SZ, 0);
 	assert(BMFOUND(idx, TABLE_SZ));
-	task_table[idx] = tsk;
+	task_table[idx] = tsk;// @NOTE 
 	bitmap_set_bit(task_table_bm, idx);
 	return IDX2TID(idx);
 }

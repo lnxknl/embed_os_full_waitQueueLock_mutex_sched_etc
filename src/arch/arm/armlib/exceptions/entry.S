@@ -121,7 +121,7 @@ fiq_handler:
  */
 .section .trap_table, "x"
 .global arm_trap_table
-arm_trap_table:
+arm_trap_table:// @NOTE 
 	b       reset_handler
 	b       undef_handler
 	b       swi_handler

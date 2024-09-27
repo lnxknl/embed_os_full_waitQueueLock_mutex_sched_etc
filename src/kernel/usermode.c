@@ -69,7 +69,7 @@ int user_thread_create(struct thread **p_thread, unsigned int flags,
 	return ENOERR;
 }
 
-int user_task_create(void *ip, void *sp) {
+int user_task_create(void *ip, void *sp) {// @NOTE 
 	struct ue_data *data;
 	int res;
 
@@ -83,7 +83,7 @@ int user_task_create(void *ip, void *sp) {
 		data->ip = ip;
 		data->sp = sp;
 
-		if ((res = new_task("", TRAMPOLINE, data)) < 0) {
+		if ((res = new_task("", TRAMPOLINE, data)) < 0) {// @NOTE 
 			pool_free(&ue_data_pool, data);
 			sched_unlock();
 			return res;

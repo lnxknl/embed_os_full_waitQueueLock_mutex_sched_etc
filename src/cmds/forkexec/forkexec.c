@@ -23,7 +23,7 @@ int main(int argc, char **argv) {
 
 	filename = malloc(strlen(argv[argc-1]));
 	strcpy(filename, argv[argc - 1]);
-	pid = new_task(filename, new_task_entry, filename);
+	pid = new_task(filename, new_task_entry, filename);// @NOTE 
 
 	if (pid > 0) {
 		task_waitpid(pid);

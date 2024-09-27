@@ -24,7 +24,7 @@
 
 struct thread;
 
-struct task {
+struct task {// @NOTE 
 	int status;
 	int tsk_id;
 

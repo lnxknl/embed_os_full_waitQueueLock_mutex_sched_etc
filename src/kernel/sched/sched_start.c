@@ -19,7 +19,7 @@ EMBOX_UNIT_INIT(sched_start_init);
 extern struct schedee *boot_thread_create(void);
 extern int idle_thread_create(void);
 
-static int sched_start_init(void) {
+static int sched_start_init(void) {// @NOTE 
 	struct schedee *current;
 	int err;
 

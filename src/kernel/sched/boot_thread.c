@@ -23,7 +23,7 @@ static void *boot_stub(void *arg) {
 }
 
 extern void thread_set_current(struct thread *t);
-struct schedee *boot_thread_create(void) {
+struct schedee *boot_thread_create(void) {// @NOTE 
 	struct thread *bootstrap;
 	extern char _stack_top;
 

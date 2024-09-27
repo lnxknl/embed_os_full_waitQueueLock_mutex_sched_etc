@@ -22,7 +22,7 @@ void waitq_link_init(struct waitq_link *wql) {
 	dlist_head_init(&wql->link);
 }
 
-static void waitq_add(struct waitq *wq, struct waitq_link *wql) {
+static void waitq_add(struct waitq *wq, struct waitq_link *wql) {// @NOTE 
 	ipl_t ipl;
 
 	assert(wq && wql);

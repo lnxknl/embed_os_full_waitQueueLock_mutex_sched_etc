@@ -9,7 +9,7 @@
 
 .global setup_excpt_table
 
-setup_excpt_table:
+setup_excpt_table:// @NOTE 
 	ldr     r0, =arm_trap_table
 	mcr     p15, 0, r0, c12, c0, 0
 	bx      lr

@@ -26,7 +26,7 @@ extern int system_abs_time_init(void);
 /**
  * The setup of the system, the run level and execution of the idle function.
  */
-void kernel_start(void) {
+void kernel_start(void) {// @NOTE 
 	kernel_init();
 
 	kgdb_start(init);
@@ -65,7 +65,7 @@ static void kernel_init(void) {
  * Set the run level to the value of the file system and net level.
  * @return 0
  */
-static int init(void) {
+static int init(void) {// @NOTE 
 	int ret;
 	const runlevel_nr_t target_level = RUNLEVEL_NRS_ENABLED - 1;
 

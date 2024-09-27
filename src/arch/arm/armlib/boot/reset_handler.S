@@ -16,7 +16,7 @@
 .global start
 .global reset_handler
 start:
-reset_handler:
+reset_handler:// @NOTE 
 	/* Check if bootloader left MMU on; if so, it's neccessary to flush cache
 	 * to make sure all the data is actually in RAM, not in some buffers */
 	mrc     p15, 0, r0, c1, c0, 0

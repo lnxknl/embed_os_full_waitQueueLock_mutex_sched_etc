@@ -52,7 +52,7 @@ void startup_ap(void) {
 	idt_load();
 	lapic_enable();
 
-	bs_idle = thread_init_stack(__ap_sp - THREAD_STACK_SIZE, THREAD_STACK_SIZE,
+	bs_idle = thread_init_stack(__ap_sp - THREAD_STACK_SIZE, THREAD_STACK_SIZE,// @NOTE 
 	    SCHED_PRIORITY_MIN, bs_idle_run, NULL);
 	cpu_init(self_id, bs_idle);
 	task_thread_register(task_kernel_task(), bs_idle);

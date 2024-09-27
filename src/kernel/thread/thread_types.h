@@ -43,7 +43,7 @@ struct task;
 /**
  * Thread control block.
  */
-struct thread {
+struct thread {// @NOTE 
 	struct schedee    schedee;     /**< Schedee interface for scheduler */
 
 	void              *(*run)(void *); /**< Start routine */

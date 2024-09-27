@@ -10,7 +10,7 @@
 
 #include <embox/unit.h>
 
-EMBOX_UNIT_INIT(kernel_task_init);
+EMBOX_UNIT_INIT(kernel_task_init);// @NOTE 
 
 static struct task kernel_task __attribute__((section(".bss.embox.ktask")));
 
@@ -18,14 +18,14 @@ struct task * task_kernel_task(void) {
 	return &kernel_task;
 }
 
-static int kernel_task_init(void) {
+static int kernel_task_init(void) {// @NOTE 
 	int ktask_id;
 	struct task *ktask;
 
 	ktask = task_kernel_task();
 	assert(ktask != NULL);
 
-	ktask_id = task_table_add(ktask);
+	ktask_id = task_table_add(ktask);// @NOTE 
 	if (ktask_id < 0) {
 		return ktask_id;
 	}

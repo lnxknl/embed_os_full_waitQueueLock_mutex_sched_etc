@@ -82,7 +82,7 @@ static rlim_t task_get_stack_size(struct task *parent) {
 	return stack_sz;
 }
 
-int new_task(const char *name, void * (*run)(void *), void *arg) {
+int new_task(const char *name, void * (*run)(void *), void *arg) {// @NOTE 
 	struct task_trampoline_arg *trampoline_arg;
 	struct thread *thd = NULL;
 	struct task *self_task = NULL;
@@ -133,7 +133,7 @@ int new_task(const char *name, void * (*run)(void *), void *arg) {
 			goto out_threadfree;
 		}
 
-		tid = task_table_add(self_task);
+		tid = task_table_add(self_task);// @NOTE 
 		if (tid < 0) {
 			res = tid;
 			goto out_threadfree;

@@ -55,7 +55,7 @@ static void *tsk3_thr2_hnd(void *data) {
 	return (void *)EXIT_CODE2;
 }
 
-static void *tsk3_thr1_hnd(void *data) {
+static void *tsk3_thr1_hnd(void *data) {// @NOTE 
 	struct thread *t;
 
 	test_assert_not_equal(task_get_id(task_self()), KERNEL_TID);
